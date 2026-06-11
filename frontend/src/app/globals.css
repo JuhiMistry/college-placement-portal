@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+:root {
+  /* Common variables */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* System default / Dark Mode values */
+  --slate-950: #0f1624; /* Soft dark slate background */
+  --slate-900: #172237; /* Card background */
+  --slate-850: #1f2e4a; /* Card borders */
+  --slate-800: #293d60; /* Borders, focus styles */
+  --slate-700: #3c527a; /* Divider lines */
+  --slate-600: #57709b; /* Subtle texts */
+  --slate-500: #8ba2c6; /* Muted texts */
+  --slate-400: #cbd5e1; /* Secondary descriptions */
+  --slate-300: #e2e8f0; /* Accent details */
+  --slate-200: #f1f5f9; /* Regular copy text */
+  --slate-100: #f8fafc; /* Headings */
+  --slate-50: #ffffff;  /* Solid whites */
+  
+  --background: var(--slate-950);
+  --foreground: var(--slate-100);
+}
+
+/* Light Theme overrides */
+html.light, :root.light {
+  --slate-950: #f8fafc; /* Ultra clean off-white background */
+  --slate-900: #ffffff; /* Card background is solid white */
+  --slate-850: #e2e8f0; /* Subtle borders */
+  --slate-800: #cbd5e1; /* Focus borders / input borders */
+  --slate-700: #94a3b8; /* Lines */
+  --slate-600: #64748b; /* Muted texts */
+  --slate-500: #475569; /* Intermediate text */
+  --slate-400: #334155; /* Descriptions */
+  --slate-300: #1e293b; /* Secondary copy */
+  --slate-200: #0f172a; /* Body titles */
+  --slate-100: #020617; /* Main black headings */
+  --slate-55: #f1f5f9;  /* Light grey for borders and light overlays */
+  --slate-50: #ffffff;  
+  
+  --background: var(--slate-950);
+  --foreground: var(--slate-200);
+}
+
+@theme inline {
+  --color-slate-950: var(--slate-950);
+  --color-slate-900: var(--slate-900);
+  --color-slate-850: var(--slate-850);
+  --color-slate-800: var(--slate-800);
+  --color-slate-700: var(--slate-700);
+  --color-slate-600: var(--slate-600);
+  --color-slate-500: var(--slate-500);
+  --color-slate-400: var(--slate-400);
+  --color-slate-300: var(--slate-300);
+  --color-slate-200: var(--slate-200);
+  --color-slate-100: var(--slate-100);
+  --color-slate-50: var(--slate-50);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enable smooth transitions between themes for key components */
+body, aside, header, nav, div, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span, a {
+  transition-property: background-color, border-color, text-color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   Light Theme CSS Overrides for Premium Glassmorphism
+   ========================================== */
+
+/* Overrides card translucent backgrounds to solid/semi-translucent white with clean shadows */
+.light .bg-slate-900\/20,
+.light .bg-slate-900\/40,
+.light .bg-slate-900\/60,
+.light .bg-slate-900\/70,
+.light .bg-slate-900\/80,
+.light .bg-slate-900\/90,
+.light .bg-slate-900\/95 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(12px) saturate(190%);
+  box-shadow: 0 10px 25px -5px rgba(148, 163, 184, 0.08), 0 8px 10px -6px rgba(148, 163, 184, 0.08), 0 0 0 1px rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Sub-panels and inner lists (usually bg-slate-950/20 or bg-slate-950/40) */
+.light .bg-slate-950\/20,
+.light .bg-slate-950\/40,
+.light .bg-slate-950\/60 {
+  background-color: rgba(241, 245, 249, 0.75) !important;
+  box-shadow: inset 0 2px 4px 0 rgba(148, 163, 184, 0.04) !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Borders overrides */
+.light .border-slate-900,
+.light .border-slate-850,
+.light .border-slate-800,
+.light .border-slate-700 {
+  border-color: rgba(226, 232, 240, 0.85) !important;
+}
+
+/* Sidebar and Navbar light-theme specific glassmorphism styling */
+.light aside {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 1px 0 0 0 rgba(226, 232, 240, 0.8) !important;
+}
+
+.light header {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 0 rgba(226, 232, 240, 0.8) !important;
+}
+
+/* Inner dashboard blocks and inputs */
+.light input,
+.light select,
+.light textarea {
+  background-color: #ffffff !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+  color: var(--slate-200) !important;
+}
+
+.light input:focus,
+.light select:focus,
+.light textarea:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15) !important;
+}
+
+/* Sidebar hover transitions */
+.light .hover\:bg-slate-900\/50:hover {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+  color: #3b82f6 !important;
+}
+
+/* StatsCard hover and active highlights */
+.light .hover\:border-slate-800:hover,
+.light .hover\:border-slate-700:hover {
+  border-color: rgba(186, 200, 218, 0.8) !important;
+}
+
+.light .bg-slate-900 {
+  background-color: #ffffff !important;
+  border-color: rgba(226, 232, 240, 0.8) !important;
+}
+
+.light .hover\:bg-slate-900:hover {
+  background-color: rgba(248, 250, 252, 0.95) !important;
+}
+
+.light .hover\:bg-slate-800\/80:hover {
+  background-color: rgba(241, 245, 249, 0.95) !important;
+}
+
+/* Table overrides */
+.light thead {
+  background-color: rgba(241, 245, 249, 0.8) !important;
+}
+
+.light tr {
+  border-bottom-color: rgba(226, 232, 240, 0.6) !important;
+}
+
+.light tr:hover {
+  background-color: rgba(248, 250, 252, 0.7) !important;
+}
+
+/* Recharts tooltip styling for light mode */
+.light .recharts-default-tooltip {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.1) !important;
+  color: #1e293b !important;
+}
+
+/* Modal boxes light overrides */
+.light .fixed.inset-0.bg-slate-950\/80 {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+.light form.rounded-2xl {
+  background-color: #ffffff !important;
+  border-color: rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 20px 25px -5px rgba(148, 163, 184, 0.15), 0 10px 10px -5px rgba(148, 163, 184, 0.15) !important;
+}
+
+/* Alerts and badges overrides */
+.light .bg-amber-500\/10 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+  border-color: rgba(245, 158, 11, 0.2) !important;
+}
+
+.light .bg-blue-500\/10 {
+  background-color: rgba(59, 130, 246, 0.08) !important;
+  border-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.light .bg-green-500\/10 {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  border-color: rgba(16, 185, 129, 0.2) !important;
+}
+
+.light .bg-red-500\/10 {
+  background-color: rgba(239, 68, 68, 0.08) !important;
+  border-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.light .bg-indigo-500\/10 {
+  background-color: rgba(99, 102, 241, 0.08) !important;
+  border-color: rgba(99, 102, 241, 0.2) !important;
+}
+
+.light .bg-purple-500\/10 {
+  background-color: rgba(168, 85, 247, 0.08) !important;
+  border-color: rgba(168, 85, 247, 0.2) !important;
+}
