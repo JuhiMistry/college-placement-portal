@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { apiService } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export default function AdminApplications() {
   const [applications, setApplications] = useState([]);
