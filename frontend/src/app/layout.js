@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "College Placement Portal | Centralized Career Hub",
   description: "Connect students with elite employers, manage recruiters, upload resumes, and track job applications in real time.",
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({ children }) {
