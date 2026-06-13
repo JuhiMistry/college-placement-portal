@@ -25,6 +25,19 @@ export default function Home() {
   // Testimonials slide state
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.classList.add("scroll-locked");
+    } else {
+      document.body.classList.remove("scroll-locked");
+    }
+    return () => {
+      document.body.classList.remove("scroll-locked");
+    };
+  }, [isDrawerOpen]);
+
   // Load public stats and latest jobs
   useEffect(() => {
     async function loadPublicData() {
@@ -150,14 +163,15 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Nav Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-400">
+          {/* Desktop Nav Links */}
+          <nav className="hidden lg:flex items-center gap-8 text-xs font-semibold text-slate-400">
             <Link href="/" className="text-slate-100 hover:text-white transition-all">Home</Link>
             <Link href="/login" className="hover:text-white transition-all">Student Portal</Link>
             <Link href="/login" className="hover:text-white transition-all">Admin Portal</Link>
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Desktop Right Actions */}
+          <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleTheme}
               aria-label="Toggle dark/light theme"
@@ -187,8 +201,116 @@ export default function Home() {
               Get Started
             </Link>
           </div>
+
+          {/* Mobile/Tablet Actions (< 1024px / lg) */}
+          <div className="flex lg:hidden items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark/light theme"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-880 hover:border-slate-700 text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none cursor-pointer min-h-[44px] min-w-[44px]"
+            >
+              {theme === "dark" ? (
+                <svg className="h-4.5 w-4.5 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 9h-1m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              ) : (
+                <svg className="h-4.5 w-4.5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+            <button
+              onClick={() => setIsDrawerOpen(true)}
+              aria-label="Open navigation menu"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-880 hover:border-slate-700 text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none cursor-pointer min-h-[44px] min-w-[44px]"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </header>
+
+      {/* Mobile Navigation Drawer Overlay */}
+      {isDrawerOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          {/* Backdrop */}
+          <div 
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity" 
+            onClick={() => setIsDrawerOpen(false)}
+          />
+
+          {/* Drawer Panel */}
+          <div className="fixed inset-y-0 right-0 w-full max-w-[300px] bg-slate-900 border-l border-slate-850 p-6 shadow-2xl flex flex-col justify-between animate-slideIn">
+            <div className="space-y-6">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-slate-850 pb-4">
+                <div className="flex items-center gap-2">
+                  <div className="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white">
+                    P
+                  </div>
+                  <span className="font-extrabold text-sm text-slate-200">
+                    Menu
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsDrawerOpen(false)}
+                  aria-label="Close menu"
+                  className="h-11 w-11 flex items-center justify-center rounded-xl border border-slate-850 bg-slate-950 text-slate-400 hover:text-slate-200 cursor-pointer min-h-[44px] min-w-[44px]"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col gap-4 font-semibold text-sm text-slate-400">
+                <Link 
+                  href="/" 
+                  onClick={() => setIsDrawerOpen(false)} 
+                  className="hover:text-white transition-all py-2"
+                >
+                  Home
+                </Link>
+                <Link 
+                  href="/login" 
+                  onClick={() => setIsDrawerOpen(false)} 
+                  className="hover:text-white transition-all py-2"
+                >
+                  Student Portal
+                </Link>
+                <Link 
+                  href="/login" 
+                  onClick={() => setIsDrawerOpen(false)} 
+                  className="hover:text-white transition-all py-2"
+                >
+                  Admin Portal
+                </Link>
+              </nav>
+            </div>
+
+            {/* Actions (Sign In / Get Started) */}
+            <div className="space-y-3 pt-6 border-t border-slate-850">
+              <Link
+                href="/login"
+                onClick={() => setIsDrawerOpen(false)}
+                className="w-full select-none rounded-xl border border-slate-800 hover:bg-slate-850 text-slate-355 text-center py-3 text-xs font-semibold block min-h-[44px] flex items-center justify-center"
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/register"
+                onClick={() => setIsDrawerOpen(false)}
+                className="w-full select-none rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-center py-3.5 text-xs font-bold block min-h-[44px] flex items-center justify-center shadow-lg shadow-blue-500/10"
+              >
+                Get Started
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 sm:py-32">
