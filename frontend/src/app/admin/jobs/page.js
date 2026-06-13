@@ -208,7 +208,7 @@ export default function AdminJobs() {
                     </button>
                     <button
                       onClick={() => handleOpenDelete(job)}
-                      className="flex-1 select-none rounded-xl bg-slate-950 border border-red-955/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none min-h-[44px] cursor-pointer"
+                      className="flex-1 select-none rounded-xl bg-slate-950 border border-red-950/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none min-h-[44px] cursor-pointer"
                     >
                       Delete
                     </button>
