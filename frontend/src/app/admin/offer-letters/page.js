@@ -266,9 +266,10 @@ export default function AdminOfferLetters() {
         </div>
       ) : (
         <div className="rounded-2xl border border-slate-900 bg-slate-900/10 overflow-hidden shadow-xl">
-          <div className="overflow-x-auto">
+          {/* Table View (Desktop/Tablet) */}
+          <div className="hidden md:block overflow-x-auto max-h-[600px] scrollbar-thin">
             <table className="w-full border-collapse text-left text-xs">
-              <thead className="border-b border-slate-900 bg-slate-900/40 text-slate-400 font-bold uppercase tracking-wider">
+              <thead className="sticky-header border-b border-slate-900 bg-slate-900/40 text-slate-400 font-bold uppercase tracking-wider">
                 <tr>
                   <th className="p-4">Student</th>
                   <th className="p-4">Company & Role</th>
@@ -325,6 +326,52 @@ export default function AdminOfferLetters() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Cards View (Mobile) */}
+          <div className="md:hidden divide-y divide-slate-900 text-xs text-slate-300">
+            {paginatedOffers.map((item) => (
+              <div key={item._id} className="p-4 space-y-3 hover:bg-slate-900/5 transition-all">
+                <div className="flex justify-between items-start gap-4">
+                  <div>
+                    <h4 className="font-bold text-sm text-slate-100">{item.student?.name || "Student Profile"}</h4>
+                    <p className="text-3xs text-slate-500 mt-0.5">{item.student?.branch}</p>
+                  </div>
+                  <span className={`px-2 py-0.5 rounded-full text-3xs font-semibold shrink-0 ${
+                    item.status === "Accepted" ? "bg-green-500/10 text-green-400 border border-green-500/20" :
+                    item.status === "Rejected" ? "bg-red-500/10 text-red-400 border border-red-500/20" :
+                    "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                  }`}>
+                    {item.status}
+                  </span>
+                </div>
+
+                <div className="text-2xs text-slate-350 space-y-1 bg-slate-950/25 p-3 rounded-xl border border-slate-900/60">
+                  <p><span className="text-slate-500">Position:</span> <span className="text-slate-200 font-semibold">{item.job?.title}</span></p>
+                  <p><span className="text-slate-500">Employer:</span> <span className="text-slate-200">{item.company?.companyName}</span></p>
+                  <p><span className="text-slate-500">Package:</span> <span className="text-blue-400 font-bold">{item.salary} LPA</span></p>
+                  <p><span className="text-slate-500">Joining:</span> <span className="text-slate-200">{new Date(item.joiningDate).toLocaleDateString()}</span></p>
+                </div>
+
+                <div className="flex gap-2">
+                  <a
+                    href={getFullPdfUrl(item.pdfUrl)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 text-center rounded-xl bg-slate-900 hover:bg-slate-850 text-[10px] font-bold py-2.5 border border-slate-800 transition-all text-slate-300 min-h-[44px] flex items-center justify-center cursor-pointer"
+                  >
+                    View PDF
+                  </a>
+                  <button
+                    onClick={() => handleRevoke(item._id)}
+                    disabled={actionLoading}
+                    className="flex-1 select-none text-center rounded-xl bg-red-950/20 hover:bg-red-950/40 text-[10px] font-bold py-2.5 border border-red-900/20 transition-all text-red-400 min-h-[44px] cursor-pointer"
+                  >
+                    Revoke
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Pagination */}

@@ -166,7 +166,7 @@ export default function StudentJobs() {
       ) : (
         <>
           {/* Jobs Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {currentItems.map((job) => {
               const eligible = checkEligibility(job);
               const applied = isApplied(job._id);
@@ -180,14 +180,14 @@ export default function StudentJobs() {
                   <div>
                     <div className="flex items-start justify-between gap-4 mb-3">
                       <div>
-                        <span className="text-3xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded uppercase">
+                        <span className="text-3xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded uppercase shrink-0">
                           {job.company?.companyName || "Company"}
                         </span>
-                        <h3 className="text-base font-bold text-slate-100 mt-2">
+                        <h3 className="text-sm sm:text-base font-bold text-slate-100 mt-2 truncate max-w-[150px] sm:max-w-none">
                           {job.title}
                         </h3>
                       </div>
-                      <div className="text-right">
+                      <div className="text-right shrink-0">
                         <p className="text-xs font-bold text-emerald-400">{job.package}</p>
                         <p className="text-3xs text-slate-500 mt-0.5">{job.location}</p>
                       </div>
@@ -210,7 +210,7 @@ export default function StudentJobs() {
                     )}
                   </div>
 
-                  <div className="border-t border-slate-900/60 pt-4 mt-auto flex items-center justify-between">
+                  <div className="border-t border-slate-900/60 pt-4 mt-auto flex flex-col gap-3">
                     {/* Eligibility Badge */}
                     <div>
                       {eligible ? (
@@ -218,7 +218,7 @@ export default function StudentJobs() {
                           ● Eligible
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 text-3xs font-semibold text-red-400 bg-red-500/5 border border-red-500/10 px-2.5 py-0.5 rounded-full">
+                        <span className="inline-flex items-center gap-1 text-3xs font-semibold text-red-400 bg-red-500/5 border border-red-500/10 px-2.5 py-0.5 rounded-full break-words">
                           ● Ineligible (Min {job.company?.eligibilityCGPA} CGPA)
                         </span>
                       )}
@@ -226,7 +226,7 @@ export default function StudentJobs() {
 
                     {/* Apply Action */}
                     {applied ? (
-                      <span className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-3xs font-bold border ${
+                      <span className={`w-full flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl text-3xs font-bold border min-h-[44px] ${
                         appStatus === "Selected" ? "bg-green-500/10 text-green-400 border-green-500/20" :
                         appStatus === "Rejected" ? "bg-red-500/10 text-red-400 border-red-500/20" :
                         appStatus === "Shortlisted" ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20" :
@@ -238,7 +238,7 @@ export default function StudentJobs() {
                       <button
                         onClick={() => handleApply(job._id)}
                         disabled={!eligible}
-                        className="select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs py-2 px-4 transition-all active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none"
+                        className="w-full select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-3xs py-2.5 px-4 transition-all active:scale-[0.98] disabled:opacity-30 disabled:pointer-events-none min-h-[44px] cursor-pointer flex items-center justify-center"
                       >
                         Apply Now
                       </button>

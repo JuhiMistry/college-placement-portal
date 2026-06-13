@@ -140,7 +140,7 @@ export default function Home() {
 
       {/* Header Nav */}
       <header className="relative z-20 border-b border-slate-900 bg-slate-950/20 backdrop-blur-md sticky top-0">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 flex h-20 items-center justify-between">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-xl bg-blue-600 flex items-center justify-center font-bold text-white shadow-xl shadow-blue-500/10 border border-blue-400/20">
               P
@@ -162,7 +162,7 @@ export default function Home() {
               onClick={toggleTheme}
               aria-label="Toggle dark/light theme"
               title={theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none cursor-pointer"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-880 hover:border-slate-700 text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none cursor-pointer min-h-[44px] min-w-[44px]"
             >
               {theme === "dark" ? (
                 <svg className="h-4.5 w-4.5 text-amber-400 transition-all hover:scale-110 duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,13 +176,13 @@ export default function Home() {
             </button>
             <Link
               href="/login"
-              className="text-xs font-semibold text-slate-300 hover:text-white transition-all py-2 px-4"
+              className="text-xs font-semibold text-slate-300 hover:text-white transition-all py-2.5 px-4 min-h-[44px] inline-flex items-center justify-center"
             >
               Sign In
             </Link>
             <Link
               href="/register"
-              className="text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white py-2.5 px-5 rounded-xl transition-all shadow-lg shadow-blue-500/10 active:scale-[0.98]"
+              className="text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white py-2.5 px-5 rounded-xl transition-all shadow-lg shadow-blue-500/10 active:scale-[0.98] min-h-[44px] inline-flex items-center justify-center"
             >
               Get Started
             </Link>
@@ -226,8 +226,8 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-6 rounded-2xl border border-slate-900 bg-slate-950/40 p-8 backdrop-blur-md shadow-2xl">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 rounded-2xl border border-slate-900 bg-slate-950/40 p-8 backdrop-blur-md shadow-2xl">
           <div className="text-center md:border-r border-slate-900/60 p-2">
             <p className="text-3xl font-extrabold text-blue-400">{stats.totalStudents}</p>
             <p className="text-4xs font-bold text-slate-500 uppercase tracking-widest mt-2">Total Candidates</p>
@@ -256,7 +256,7 @@ export default function Home() {
       </section>
 
       {/* Latest Opportunities Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-xl mx-auto space-y-3 mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">Latest Job Vacancies</h2>
           <p className="text-xs text-slate-400">Apply instantly to recently published roles from our recruiters</p>
@@ -270,7 +270,7 @@ export default function Home() {
             </svg>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {latestJobs.map((job) => (
               <div
                 key={job._id}
@@ -304,7 +304,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-xl mx-auto space-y-3 mb-16">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">How It Works</h2>
           <p className="text-xs text-slate-400">Visual guide to the campus hiring drive workflow</p>
@@ -331,7 +331,7 @@ export default function Home() {
       </section>
 
       {/* Choose Your Portal Section */}
-      <section className="relative z-10 mx-auto max-w-5xl px-6 sm:px-8 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Student Portal Card */}
           <div className="rounded-2xl border border-slate-850 bg-slate-900/10 p-8 flex flex-col justify-between hover:border-blue-500/20 transition-all relative overflow-hidden group">
@@ -381,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* Recruiter Spotlight & Featured Recruiters Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center max-w-xl mx-auto space-y-3 mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">Hiring Partners Spotlight</h2>
           <p className="text-xs text-slate-400">Partnering with recruiters from elite organizations globally</p>
@@ -412,7 +412,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="relative z-10 mx-auto max-w-3xl px-6 py-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center space-y-3 mb-10">
           <h2 className="text-2xl font-bold tracking-tight text-slate-100">Student Testimonials</h2>
           <p className="text-xs text-slate-400">Success stories from candidates who launched careers via the portal</p>
@@ -444,17 +444,20 @@ export default function Home() {
               <button
                 key={i}
                 onClick={() => setActiveTestimonial(i)}
-                className={`h-1.5 w-1.5 rounded-full transition-all ${
-                  i === activeTestimonial ? "bg-blue-500 w-3" : "bg-slate-800 hover:bg-slate-700"
-                }`}
-              />
+                className="h-11 w-11 flex items-center justify-center outline-none cursor-pointer"
+                aria-label={`Go to slide ${i + 1}`}
+              >
+                <span className={`h-1.5 rounded-full transition-all ${
+                  i === activeTestimonial ? "bg-blue-500 w-3" : "bg-slate-800 hover:bg-slate-700 w-1.5"
+                }`} />
+              </button>
             ))}
           </div>
         </div>
       </section>
 
       {/* Why Choose Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 py-16 border-t border-slate-900/60">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-900/60">
         <div className="text-center max-w-xl mx-auto space-y-3 mb-16">
           <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">Why Choose Our Portal?</h2>
           <p className="text-xs text-slate-400">Streamlined tools built for elite educational campus recruitment</p>
@@ -488,7 +491,7 @@ export default function Home() {
       </section>
 
       {/* Events & Milestones Calendar */}
-      <section className="relative z-10 mx-auto max-w-5xl px-6 py-16 border-t border-slate-900/60">
+      <section className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-900/60">
         <div className="text-center space-y-3 mb-12">
           <h2 className="text-2xl font-bold tracking-tight text-slate-100">Placement Timeline & Milestones</h2>
           <p className="text-xs text-slate-400">Key drive dates, prep challenges, and interview schedules</p>
@@ -511,7 +514,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="relative z-20 border-t border-slate-900 bg-slate-950/60 pt-16 pb-8 text-xs text-slate-500">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-8 pb-12">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 pb-12">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">

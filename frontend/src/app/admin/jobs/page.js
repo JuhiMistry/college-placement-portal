@@ -152,7 +152,7 @@ export default function AdminJobs() {
       ) : (
         <>
           {/* Jobs Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {currentItems.map((job) => (
               <div 
                 key={job._id} 
@@ -161,14 +161,14 @@ export default function AdminJobs() {
                 <div>
                   <div className="flex items-start justify-between gap-4 mb-3">
                     <div>
-                      <span className="text-3xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded uppercase">
+                      <span className="text-3xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded uppercase shrink-0">
                         {job.company?.companyName || "Company"}
                       </span>
-                      <h3 className="text-base font-bold text-slate-100 group-hover:text-blue-400 transition-all mt-2">
+                      <h3 className="text-sm sm:text-base font-bold text-slate-100 group-hover:text-blue-400 transition-all mt-2 truncate max-w-[150px] sm:max-w-none">
                         {job.title}
                       </h3>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right shrink-0">
                       <p className="text-xs font-bold text-emerald-400">{job.package}</p>
                       <p className="text-3xs text-slate-500 mt-0.5">{job.location}</p>
                     </div>
@@ -192,21 +192,23 @@ export default function AdminJobs() {
                   )}
                 </div>
 
-                <div className="border-t border-slate-900/60 pt-4 mt-auto flex items-center justify-between">
-                  <span className="text-3xs text-slate-500 font-semibold">
-                    Min CGPA: <strong className="text-slate-400">{job.company?.eligibilityCGPA || "N/A"}</strong>
-                  </span>
+                <div className="border-t border-slate-900/60 pt-4 mt-auto flex flex-col gap-3">
+                  <div className="flex items-center justify-between text-3xs text-slate-500 font-semibold">
+                    <span>
+                      Min CGPA: <strong className="text-slate-400">{job.company?.eligibilityCGPA || "N/A"}</strong>
+                    </span>
+                  </div>
 
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEdit(job)}
-                      className="select-none rounded-lg bg-slate-900 border border-slate-850 hover:border-slate-750 hover:bg-slate-850 text-slate-300 text-3xs font-semibold py-1.5 px-3.5 transition-all outline-none"
+                      className="flex-1 select-none rounded-xl bg-slate-900 border border-slate-850 hover:border-slate-750 hover:bg-slate-850 text-slate-300 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none min-h-[44px] cursor-pointer"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleOpenDelete(job)}
-                      className="select-none rounded-lg bg-slate-950 border border-red-955/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-1.5 px-3.5 transition-all outline-none"
+                      className="flex-1 select-none rounded-xl bg-slate-950 border border-red-955/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none min-h-[44px] cursor-pointer"
                     >
                       Delete
                     </button>

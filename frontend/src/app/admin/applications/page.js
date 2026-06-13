@@ -140,10 +140,10 @@ export default function AdminApplications() {
         </div>
       ) : (
         <>
-          {/* Applications Table */}
-          <div className="overflow-x-auto rounded-2xl border border-slate-900 bg-slate-900/10 backdrop-blur-md">
+          {/* Applications Table (Desktop/Tablet) */}
+          <div className="hidden md:block overflow-x-auto rounded-2xl border border-slate-900 bg-slate-900/10 backdrop-blur-md max-h-[600px] scrollbar-thin">
             <table className="w-full text-left border-collapse">
-              <thead>
+              <thead className="sticky-header">
                 <tr className="border-b border-slate-900 bg-slate-950/40 text-slate-400 text-3xs font-bold uppercase tracking-wider">
                   <th className="p-4 pl-6">Student Details</th>
                   <th className="p-4">Branch & CGPA</th>
@@ -197,6 +197,58 @@ export default function AdminApplications() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Dedicated Card Layout for Mobile */}
+          <div className="md:hidden space-y-4">
+            {currentItems.map((app) => (
+              <div key={app._id} className="rounded-2xl border border-slate-900 bg-slate-900/20 p-4 space-y-3 shadow-md">
+                <div className="flex justify-between items-start gap-4">
+                  <div className="min-w-0">
+                    <h4 className="font-bold text-sm text-slate-100 truncate">{app.student?.name || "N/A"}</h4>
+                    <p className="text-3xs text-slate-500 mt-0.5 truncate">{app.student?.email || "N/A"}</p>
+                  </div>
+                  <select
+                    value={app.status}
+                    onChange={(e) => handleStatusChange(app._id, e.target.value)}
+                    className={`rounded-lg py-1.5 px-2.5 text-3xs font-bold outline-none border cursor-pointer bg-slate-950 shrink-0 ${getStatusColor(app.status)}`}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Shortlisted">Shortlisted</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Selected">Selected</option>
+                  </select>
+                </div>
+
+                <div className="text-2xs text-slate-300 space-y-2 border-t border-slate-900/60 pt-2.5">
+                  <div>
+                    <span className="text-slate-500 font-medium">Academics: </span>
+                    <span className="text-slate-200">{app.student?.branch || "N/A"} (CGPA: {app.student?.cgpa || "N/A"})</span>
+                  </div>
+                  <div>
+                    <span className="text-slate-500 font-medium">Opportunity: </span>
+                    <span className="text-slate-200 font-semibold">{app.job?.title || "N/A"}</span>
+                    <span className="text-slate-400"> ({app.job?.company?.companyName || "N/A"})</span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center text-3xs text-slate-500 pt-2 border-t border-slate-900/60">
+                  {app.student?.resumeUrl ? (
+                    <a
+                      href={`${API_BASE_URL.replace("/api", "")}/uploads/${app.student.resumeUrl}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-bold text-blue-400 hover:text-blue-300 transition-all hover:underline min-h-[30px] flex items-center"
+                    >
+                      View PDF Resume
+                    </a>
+                  ) : (
+                    <span className="text-slate-600 font-bold">No Resume</span>
+                  )}
+                  <span>Applied: {app.createdAt ? new Date(app.createdAt).toLocaleDateString() : "N/A"}</span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Pagination Controls */}

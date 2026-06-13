@@ -31,6 +31,17 @@ export default function StudentOfferLetters() {
     loadOffers();
   }, []);
 
+  useEffect(() => {
+    if (previewUrl) {
+      document.body.classList.add("scroll-locked");
+    } else {
+      document.body.classList.remove("scroll-locked");
+    }
+    return () => {
+      document.body.classList.remove("scroll-locked");
+    };
+  }, [previewUrl]);
+
   const handleStatusUpdate = async (id, status) => {
     if (status === "Rejected" && !confirm("Are you sure you want to reject this placement offer? This action is irreversible.")) {
       return;
@@ -67,7 +78,7 @@ export default function StudentOfferLetters() {
           <div className="h-6 w-48 bg-slate-800 rounded animate-pulse" />
           <div className="h-3 w-64 bg-slate-800 rounded mt-2 animate-pulse" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <SkeletonCard />
           <SkeletonCard />
         </div>
@@ -133,7 +144,7 @@ export default function StudentOfferLetters() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {offers.map((offer) => (
             <div
               key={offer._id}
@@ -171,10 +182,10 @@ export default function StudentOfferLetters() {
               </div>
 
               {/* Actions */}
-              <div className="mt-6 pt-4 border-t border-slate-900/60 flex items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-slate-900/60 flex items-center justify-between gap-3 flex-wrap">
                 <button
                   onClick={() => setPreviewUrl(getFullPdfUrl(offer.pdfUrl))}
-                  className="rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-950/40 px-3.5 py-2.5 text-xs font-bold text-slate-300 hover:text-slate-100 transition-all cursor-pointer inline-flex items-center gap-1.5"
+                  className="rounded-xl border border-slate-800 hover:border-slate-700 bg-slate-950/40 px-3.5 py-2.5 text-xs font-bold text-slate-300 hover:text-slate-100 transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 min-h-[44px]"
                 >
                   <svg className="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -183,20 +194,20 @@ export default function StudentOfferLetters() {
                   Preview
                 </button>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   {offer.status === "Pending" && (
                     <>
                       <button
                         onClick={() => handleStatusUpdate(offer._id, "Rejected")}
                         disabled={actionLoading}
-                        className="rounded-xl border border-red-900/30 hover:border-red-900/60 bg-red-950/10 hover:bg-red-950/20 px-3 py-2 text-xs font-bold text-red-400 cursor-pointer"
+                        className="rounded-xl border border-red-900/30 hover:border-red-900/60 bg-red-950/10 hover:bg-red-950/20 px-3 py-2.5 text-xs font-bold text-red-400 cursor-pointer min-h-[44px] inline-flex items-center justify-center"
                       >
                         Reject
                       </button>
                       <button
                         onClick={() => handleStatusUpdate(offer._id, "Accepted")}
                         disabled={actionLoading}
-                        className="rounded-xl bg-green-600 hover:bg-green-500 px-3.5 py-2 text-xs font-bold text-white shadow-lg shadow-green-500/20 cursor-pointer"
+                        className="rounded-xl bg-green-600 hover:bg-green-500 px-3.5 py-2.5 text-xs font-bold text-white shadow-lg shadow-green-500/20 cursor-pointer min-h-[44px] inline-flex items-center justify-center"
                       >
                         Accept
                       </button>
@@ -208,7 +219,7 @@ export default function StudentOfferLetters() {
                       download
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all cursor-pointer inline-flex items-center gap-1.5"
+                      className="rounded-xl bg-blue-600 hover:bg-blue-500 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all cursor-pointer inline-flex items-center justify-center gap-1.5 min-h-[44px]"
                     >
                       <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -226,13 +237,13 @@ export default function StudentOfferLetters() {
       {/* PDF Preview Dialog Modal */}
       {previewUrl && (
         <div className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-4xl h-[85vh] rounded-2xl border border-slate-800 bg-slate-900 flex flex-col overflow-hidden shadow-2xl animate-fadeIn">
+          <div className="w-full max-w-4xl h-[80vh] md:h-[85vh] rounded-2xl border border-slate-800 bg-slate-900 flex flex-col overflow-hidden shadow-2xl animate-fadeIn">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-slate-800 shrink-0">
               <h3 className="text-xs font-bold text-slate-200 uppercase tracking-wider">Offer Letter PDF Preview</h3>
               <button
                 onClick={() => setPreviewUrl(null)}
-                className="rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-950 p-1.5 text-slate-400 hover:text-slate-200 transition-all cursor-pointer"
+                className="rounded-lg border border-slate-800 hover:border-slate-700 bg-slate-950 p-1.5 text-slate-400 hover:text-slate-200 transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
               >
                 <svg className="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

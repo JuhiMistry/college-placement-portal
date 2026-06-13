@@ -71,7 +71,7 @@ export default function StudentInterviews() {
           <div className="h-6 w-48 bg-slate-800 rounded animate-pulse" />
           <div className="h-3 w-64 bg-slate-800 rounded mt-2 animate-pulse" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <SkeletonCard />
           <SkeletonCard />
           <SkeletonCard />
@@ -109,7 +109,7 @@ export default function StudentInterviews() {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {interviews.map((item) => {
             const countdown = getCountdown(item.date, item.time);
             
@@ -182,7 +182,7 @@ export default function StudentInterviews() {
                       href={item.meetingLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-xl bg-blue-600 hover:bg-blue-500 text-2xs font-bold px-4 py-2 text-white shadow-lg shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                      className="rounded-xl bg-blue-600 hover:bg-blue-500 text-2xs font-bold px-4 py-2.5 min-h-[44px] inline-flex items-center justify-center text-white shadow-lg shadow-blue-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                     >
                       Join Meeting
                     </a>

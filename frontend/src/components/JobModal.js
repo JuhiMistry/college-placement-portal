@@ -36,6 +36,17 @@ export default function JobModal({ isOpen, job, companies = [], onClose, onSubmi
     }
   }, [job, companies, isOpen]);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("scroll-locked");
+    } else {
+      document.body.classList.remove("scroll-locked");
+    }
+    return () => {
+      document.body.classList.remove("scroll-locked");
+    };
+  }, [isOpen]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -173,14 +184,14 @@ export default function JobModal({ isOpen, job, companies = [], onClose, onSubmi
               type="button"
               onClick={onClose}
               disabled={loading}
-              className="flex-1 select-none rounded-xl bg-slate-950 border border-slate-850 hover:bg-slate-900 text-slate-400 hover:text-slate-200 font-semibold text-xs py-2.5 transition-all outline-none disabled:opacity-50"
+              className="flex-1 select-none rounded-xl bg-slate-950 border border-slate-850 hover:bg-slate-900 text-slate-400 hover:text-slate-200 font-semibold text-xs py-3 min-h-[44px] flex items-center justify-center transition-all outline-none disabled:opacity-50 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs py-2.5 transition-all outline-none disabled:opacity-50"
+              className="flex-1 select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs py-3 min-h-[44px] flex items-center justify-center transition-all outline-none disabled:opacity-50 cursor-pointer"
             >
               {loading ? "Posting..." : job ? "Update" : "Post"}
             </button>

@@ -62,7 +62,7 @@ export default function AdminDashboard() {
 
       {/* Advanced Stats Cards (8 Cards) */}
       {stats && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           <StatsCard
             title="Total Students"
             value={stats.totalStudents}
@@ -148,11 +148,11 @@ export default function AdminDashboard() {
 
       {/* Grid: Charts & Analytics Summary */}
       {mounted && stats && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Monthly Applications Chart */}
-          <div className="rounded-2xl border border-slate-900 bg-slate-900/20 p-6 space-y-4">
+          <div className="rounded-2xl border border-slate-900 bg-slate-900/20 p-4 sm:p-6 space-y-4">
             <h3 className="text-sm font-bold text-slate-200 border-b border-slate-900 pb-3">Monthly Applications Filed</h3>
-            <div className="h-64">
+            <div className="h-64 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={stats.monthlyApplications}>
                   <XAxis dataKey="month" stroke="#64748b" fontSize={10} tickLine={false} />
@@ -173,9 +173,9 @@ export default function AdminDashboard() {
           </div>
 
           {/* Interview Trends Chart */}
-          <div className="rounded-2xl border border-slate-900 bg-slate-900/20 p-6 space-y-4">
+          <div className="rounded-2xl border border-slate-900 bg-slate-900/20 p-4 sm:p-6 space-y-4">
             <h3 className="text-sm font-bold text-slate-200 border-b border-slate-900 pb-3">Interview Activity Trends</h3>
-            <div className="h-64">
+            <div className="h-64 sm:h-72">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={stats.interviewTrends}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#1f2e4a" />
@@ -199,9 +199,9 @@ export default function AdminDashboard() {
       )}
 
       {/* Grid: Recent Applications & Shortcuts */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Recent Applications table */}
-        <div className="lg:col-span-2 rounded-2xl border border-slate-900 bg-slate-900/20 p-6 flex flex-col justify-between">
+        <div className="lg:col-span-2 rounded-2xl border border-slate-900 bg-slate-900/20 p-4 sm:p-6 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between border-b border-slate-900 pb-3 mb-4">
               <h3 className="text-sm font-bold text-slate-200">Recent Student Applications</h3>
@@ -212,14 +212,14 @@ export default function AdminDashboard() {
             {recentApps.length === 0 ? (
               <p className="text-slate-500 text-xs py-8 text-center">No applications submitted yet.</p>
             ) : (
-              <div className="divide-y divide-slate-900 text-xs text-slate-300">
+              <div className="divide-y divide-slate-900/60 text-xs text-slate-300">
                 {recentApps.map((app) => (
-                  <div key={app._id} className="py-3 flex items-center justify-between hover:bg-slate-900/10 px-2 rounded-lg transition-all">
+                  <div key={app._id} className="py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:bg-slate-900/10 px-2 rounded-lg transition-all">
                     <div>
                       <p className="font-semibold text-slate-100">{app.student?.name || "Student"}</p>
                       <p className="text-3xs text-slate-500 mt-0.5">{app.job?.title} • {app.job?.company?.companyName}</p>
                     </div>
-                    <span className={`px-2 py-0.5 rounded-full text-3xs font-semibold border ${
+                    <span className={`self-start sm:self-auto px-2 py-0.5 rounded-full text-3xs font-semibold border ${
                       app.status === "Selected" ? "bg-green-500/10 text-green-400 border-green-500/20" :
                       app.status === "Rejected" ? "bg-red-500/10 text-red-400 border-red-500/20" :
                       app.status === "Shortlisted" ? "bg-indigo-500/10 text-indigo-400 border-indigo-500/20" :

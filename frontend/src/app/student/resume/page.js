@@ -115,7 +115,7 @@ export default function StudentResume() {
               accept=".pdf"
               required
               onChange={handleFileChange}
-              className="mt-2 w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-900 file:text-slate-200 hover:file:bg-slate-850 cursor-pointer file:cursor-pointer"
+              className="mt-2 w-full text-xs text-slate-400 file:mr-3 file:py-3 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-900 file:text-slate-200 hover:file:bg-slate-850 cursor-pointer file:cursor-pointer file:min-h-[44px]"
             />
             <p className="text-3xs text-slate-500 mt-2">Only PDF formats are supported. Max file size 5MB.</p>
           </div>
@@ -123,7 +123,7 @@ export default function StudentResume() {
           <button
             type="submit"
             disabled={uploading || !file}
-            className="w-full select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3 transition-all outline-none disabled:opacity-40 disabled:pointer-events-none"
+            className="w-full select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3.5 transition-all outline-none disabled:opacity-40 disabled:pointer-events-none min-h-[44px] cursor-pointer"
           >
             {uploading ? (
               <span className="flex items-center justify-center gap-2">

@@ -143,7 +143,7 @@ export default function AdminCompanies() {
       ) : (
         <>
           {/* Companies Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {currentItems.map((comp) => (
               <div 
                 key={comp._id} 
@@ -151,10 +151,10 @@ export default function AdminCompanies() {
               >
                 <div>
                   <div className="flex items-start justify-between gap-4 mb-3">
-                    <h3 className="text-base font-bold text-slate-100 group-hover:text-blue-400 transition-all">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-100 group-hover:text-blue-400 transition-all truncate">
                       {comp.companyName}
                     </h3>
-                    <span className="text-3xs font-semibold text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-850 uppercase">
+                    <span className="text-3xs font-semibold text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-850 uppercase shrink-0">
                       {comp.package}
                     </span>
                   </div>
@@ -163,28 +163,28 @@ export default function AdminCompanies() {
                   </p>
                 </div>
 
-                <div className="border-t border-slate-900/60 pt-4 mt-auto flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-3xs text-slate-500 font-semibold">
-                    <span className="flex items-center gap-1">
-                      <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="border-t border-slate-900/60 pt-4 mt-auto flex flex-col gap-3">
+                  <div className="flex items-center justify-between text-3xs text-slate-500 font-semibold">
+                    <span className="flex items-center gap-1 truncate">
+                      <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>
-                      {comp.location}
+                      <span className="truncate">{comp.location}</span>
                     </span>
-                    <span>CGPA: <strong className="text-slate-400">{comp.eligibilityCGPA}</strong></span>
+                    <span className="shrink-0">CGPA: <strong className="text-slate-400">{comp.eligibilityCGPA}</strong></span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleOpenEdit(comp)}
-                      className="select-none rounded-lg bg-slate-900 border border-slate-850 hover:border-slate-750 hover:bg-slate-850 text-slate-300 text-3xs font-semibold py-1.5 px-3.5 transition-all outline-none"
+                      className="flex-1 select-none rounded-xl bg-slate-900 border border-slate-850 hover:border-slate-750 hover:bg-slate-850 text-slate-300 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none active:scale-[0.98] cursor-pointer min-h-[44px]"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleOpenDelete(comp)}
-                      className="select-none rounded-lg bg-slate-950 border border-red-950/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-1.5 px-3.5 transition-all outline-none"
+                      className="flex-1 select-none rounded-xl bg-slate-950 border border-red-950/40 hover:border-red-900/80 hover:text-red-400 text-slate-400 text-3xs font-semibold py-2.5 px-3.5 transition-all outline-none active:scale-[0.98] cursor-pointer min-h-[44px]"
                     >
                       Delete
                     </button>

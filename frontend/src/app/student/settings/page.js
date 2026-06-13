@@ -145,7 +145,7 @@ export default function StudentSettings() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 rounded-xl bg-blue-600 hover:bg-blue-500 py-3 text-xs font-bold tracking-wide text-white transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+            className="w-full mt-2 rounded-xl bg-blue-600 hover:bg-blue-500 py-3.5 text-xs font-bold tracking-wide text-white transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer min-h-[44px]"
           >
             {loading ? <LoadingSpinner size="sm" color="text-white" /> : "Save Profile Changes"}
           </button>
@@ -184,7 +184,7 @@ export default function StudentSettings() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 rounded-xl bg-blue-600 hover:bg-blue-500 py-3 text-xs font-bold tracking-wide text-white transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+            className="w-full mt-2 rounded-xl bg-blue-600 hover:bg-blue-500 py-3.5 text-xs font-bold tracking-wide text-white transition-all active:scale-[0.98] disabled:opacity-50 cursor-pointer min-h-[44px]"
           >
             {loading ? <LoadingSpinner size="sm" color="text-white" /> : "Update Password"}
           </button>
@@ -200,7 +200,7 @@ export default function StudentSettings() {
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={() => theme === "light" && toggleTheme()}
-                className={`p-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                className={`p-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer min-h-[44px] ${
                   theme === "dark"
                     ? "bg-blue-600/10 border-blue-500/30 text-blue-400"
                     : "bg-slate-950 border-slate-850 text-slate-400 hover:text-slate-200"
@@ -213,7 +213,7 @@ export default function StudentSettings() {
               </button>
               <button
                 onClick={() => theme === "dark" && toggleTheme()}
-                className={`p-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
+                className={`p-3 rounded-xl border text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer min-h-[44px] ${
                   theme === "light"
                     ? "bg-blue-600/10 border-blue-500/30 text-blue-400"
                     : "bg-slate-950 border-slate-850 text-slate-400 hover:text-slate-200"

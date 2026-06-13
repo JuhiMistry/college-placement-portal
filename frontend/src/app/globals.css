@@ -226,3 +226,79 @@ body, aside, header, nav, div, button, input, select, textarea, h1, h2, h3, h4, 
   background-color: rgba(168, 85, 247, 0.08) !important;
   border-color: rgba(168, 85, 247, 0.2) !important;
 }
+
+/* Animations for Mobile Drawer Slide-in & Fade */
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+/* Scroll lock body helper */
+body.scroll-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Sticky Header Helper for Scrollable Tables */
+.sticky-header th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--slate-950);
+}
+
+.light .sticky-header th {
+  background-color: #f1f5f9 !important;
+}
+
+/* Reduce blur on mobile for rendering performance and text readability */
+@media (max-width: 767px) {
+  .backdrop-blur-md,
+  .backdrop-blur-xl,
+  .backdrop-blur-lg {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  .light .bg-slate-900\/20,
+  .light .bg-slate-900\/40,
+  .light .bg-slate-900\/60,
+  .light .bg-slate-900\/70,
+  .light .bg-slate-900\/80,
+  .light .bg-slate-900\/90,
+  .light .bg-slate-900\/95 {
+    background-color: #ffffff !important;
+  }
+  
+  .bg-slate-900\/20,
+  .bg-slate-900\/40,
+  .bg-slate-900\/60,
+  .bg-slate-900\/70,
+  .bg-slate-900\/80,
+  .bg-slate-900\/90,
+  .bg-slate-900\/95 {
+    background-color: #172237 !important;
+  }
+}
+

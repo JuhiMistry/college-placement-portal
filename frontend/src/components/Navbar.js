@@ -6,7 +6,7 @@ import { useNotifications } from "@/context/NotificationContext";
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-export default function Navbar({ title }) {
+export default function Navbar({ title, onToggleSidebar }) {
   const { user } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const { notifications, unreadCount, markAsRead, markAllAsRead } = useNotifications();
@@ -32,20 +32,30 @@ export default function Navbar({ title }) {
   };
 
   return (
-    <header className="relative z-20 flex h-16 items-center justify-between border-b border-slate-900 bg-slate-950/40 px-6 backdrop-blur-md sticky top-0">
+    <header className="relative z-20 flex h-16 items-center justify-between border-b border-slate-900 bg-slate-950/40 px-4 sm:px-6 backdrop-blur-md sticky top-0">
       {/* Left section: Home Link & Title */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+        <button
+          onClick={onToggleSidebar}
+          aria-label="Toggle navigation drawer"
+          className="flex lg:hidden h-9 w-9 items-center justify-center rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none cursor-pointer shrink-0"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+        
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 px-3.5 py-2 text-xs font-semibold text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none"
+          className="flex items-center gap-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 px-3 py-2 text-xs font-semibold text-slate-300 hover:text-slate-100 transition-all active:scale-[0.98] outline-none shrink-0"
         >
           <svg className="h-4.5 w-4.5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11V9a2 2 0 00-2-2M9 21V12h6v9m-6 0h6" />
           </svg>
-          <span>Home</span>
+          <span className="hidden sm:inline">Home</span>
         </Link>
-        <div className="h-4 w-px bg-slate-800" />
-        <h2 className="text-lg font-semibold tracking-tight text-slate-100 capitalize">
+        <div className="h-4 w-px bg-slate-800 shrink-0" />
+        <h2 className="text-sm sm:text-base lg:text-lg font-bold tracking-tight text-slate-100 capitalize truncate max-w-[120px] sm:max-w-none">
           {title || "Overview"}
         </h2>
       </div>
@@ -144,8 +154,8 @@ export default function Navbar({ title }) {
 
         {/* User Info */}
         {user && (
-          <div className="flex items-center gap-3">
-            <span className={`rounded-full px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className={`hidden sm:inline-flex rounded-full px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
               user.role === "admin"
                 ? "bg-purple-500/10 text-purple-400 border-purple-500/20"
                 : "bg-blue-500/10 text-blue-400 border-blue-500/20"
@@ -156,7 +166,7 @@ export default function Navbar({ title }) {
               <p className="text-xs font-semibold text-slate-200 leading-tight">{user.name}</p>
               <p className="text-3xs text-slate-500 truncate max-w-[120px]">{user.email}</p>
             </div>
-            <div className="h-8 w-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-300">
+            <div className="h-8 w-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs font-bold text-slate-300 shrink-0">
               {user.name ? user.name.charAt(0).toUpperCase() : "U"}
             </div>
           </div>

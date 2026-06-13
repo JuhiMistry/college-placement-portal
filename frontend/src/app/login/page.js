@@ -37,7 +37,7 @@ export default function Login() {
       <div className="absolute top-6 left-6 z-20">
         <Link
           href="/"
-          className="flex items-center gap-2 rounded-xl bg-white/80 dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 px-4 py-2.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 transition-all active:scale-[0.98] outline-none shadow-sm"
+          className="rounded-xl bg-white/80 dark:bg-slate-900/60 hover:bg-slate-50 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 px-4 py-2.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-slate-100 transition-all active:scale-[0.98] outline-none shadow-sm min-h-[44px] inline-flex items-center justify-center gap-2"
         >
           <svg className="h-4.5 w-4.5 text-blue-500 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11V9a2 2 0 00-2-2M9 21V12h6v9m-6 0h6" />
@@ -125,7 +125,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 py-3 text-xs font-bold tracking-wide text-white transition-all shadow-md active:scale-[0.98] disabled:opacity-50 cursor-pointer"
+            className="w-full mt-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-500 hover:from-blue-500 hover:to-indigo-400 py-3.5 text-xs font-bold tracking-wide text-white transition-all shadow-md active:scale-[0.98] disabled:opacity-50 cursor-pointer min-h-[44px] flex items-center justify-center"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">

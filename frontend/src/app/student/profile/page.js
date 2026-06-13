@@ -127,7 +127,7 @@ export default function StudentProfile() {
 
       <div className="rounded-2xl border border-slate-850 bg-slate-900/20 p-6">
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-2xs font-semibold uppercase tracking-wider text-slate-400">Full Name</label>
               <input
@@ -152,7 +152,7 @@ export default function StudentProfile() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-2xs font-semibold uppercase tracking-wider text-slate-400">Branch / Major</label>
               <input
@@ -180,7 +180,7 @@ export default function StudentProfile() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-slate-900/60 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-slate-900/60 pt-4">
             <div>
               <label className="block text-2xs font-semibold uppercase tracking-wider text-slate-400">GitHub Link</label>
               <input
@@ -233,7 +233,7 @@ export default function StudentProfile() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3.5 transition-all outline-none disabled:opacity-50"
+            className="w-full select-none rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs py-3.5 transition-all outline-none disabled:opacity-50 min-h-[44px] cursor-pointer"
           >
             {saving ? "Saving Changes..." : "Save Profile Details"}
           </button>

@@ -147,7 +147,7 @@ export default function StudentDashboard() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <StatsCard
           title="Applications Filed"
           value={myApps.length}
@@ -201,7 +201,7 @@ export default function StudentDashboard() {
             <div className="rounded-2xl border border-slate-900 bg-slate-900/20 p-6 space-y-6">
               <div className="flex justify-between items-center border-b border-slate-900 pb-3">
                 <h3 className="text-sm font-bold text-slate-200">Active Application Tracking</h3>
-                <span className="text-3xs font-bold text-slate-500 uppercase tracking-wide">
+                <span className="text-3xs font-bold text-slate-500 uppercase tracking-wide truncate max-w-[150px] sm:max-w-none">
                   {activeApplication.job?.title} • {activeApplication.job?.company?.companyName}
                 </span>
               </div>
@@ -220,16 +220,16 @@ export default function StudentDashboard() {
                 />
 
                 {/* Step 1: Applied */}
-                <div className="text-center flex flex-col items-center">
+                <div className="text-center flex flex-col items-center w-20 sm:w-24">
                   <div className="h-8.5 w-8.5 rounded-full bg-blue-600 border-2 border-slate-950 flex items-center justify-center text-white text-xs font-bold font-sans shadow-lg shadow-blue-500/20">
                     ✓
                   </div>
-                  <p className="text-3xs font-bold text-slate-300 mt-2">Applied</p>
+                  <p className="text-3xs font-bold text-slate-300 mt-2 truncate w-full">Applied</p>
                   <p className="text-[9px] text-slate-500 mt-0.5">{new Date(activeApplication.createdAt).toLocaleDateString([], { month: "short", day: "numeric" })}</p>
                 </div>
 
                 {/* Step 2: Evaluation / Shortlist */}
-                <div className="text-center flex flex-col items-center">
+                <div className="text-center flex flex-col items-center w-20 sm:w-24">
                   <div className={`h-8.5 w-8.5 rounded-full border-2 border-slate-950 flex items-center justify-center text-xs font-bold font-sans shadow-md ${
                     activeApplication.status === "Shortlisted" || activeApplication.status === "Selected" || activeApplication.status === "Rejected"
                       ? "bg-blue-600 text-white"
@@ -237,16 +237,16 @@ export default function StudentDashboard() {
                   }`}>
                     2
                   </div>
-                  <p className={`text-3xs font-bold mt-2 ${
+                  <p className={`text-3xs font-bold mt-2 truncate w-full ${
                     activeApplication.status === "Shortlisted" || activeApplication.status === "Selected" || activeApplication.status === "Rejected"
                       ? "text-slate-300"
                       : "text-slate-500"
                   }`}>Shortlisted</p>
-                  <p className="text-[9px] text-slate-500 mt-0.5">Evaluation Round</p>
+                  <p className="text-[9px] text-slate-500 mt-0.5 truncate w-full">Evaluation</p>
                 </div>
 
                 {/* Step 3: Final Selection */}
-                <div className="text-center flex flex-col items-center">
+                <div className="text-center flex flex-col items-center w-20 sm:w-24">
                   <div className={`h-8.5 w-8.5 rounded-full border-2 border-slate-950 flex items-center justify-center text-xs font-bold font-sans shadow-md ${
                     activeApplication.status === "Selected" ? "bg-emerald-600 text-white" :
                     activeApplication.status === "Rejected" ? "bg-red-600 text-white" :
@@ -254,14 +254,14 @@ export default function StudentDashboard() {
                   }`}>
                     {activeApplication.status === "Selected" ? "✓" : activeApplication.status === "Rejected" ? "✗" : "3"}
                   </div>
-                  <p className={`text-3xs font-bold mt-2 ${
+                  <p className={`text-3xs font-bold mt-2 truncate w-full ${
                     activeApplication.status === "Selected" ? "text-emerald-400 font-extrabold" :
                     activeApplication.status === "Rejected" ? "text-red-400 font-extrabold" :
                     "text-slate-500"
                   }`}>
                     {activeApplication.status === "Rejected" ? "Rejected" : "Selected"}
                   </p>
-                  <p className="text-[9px] text-slate-500 mt-0.5">Final Status</p>
+                  <p className="text-[9px] text-slate-500 mt-0.5 truncate w-full">Final Status</p>
                 </div>
               </div>
             </div>
